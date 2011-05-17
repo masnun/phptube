@@ -19,7 +19,7 @@ class PhpTube
             }
 
             if (strstr($html, 'das_captcha')) {
-                throw new Exception("Captcah Found please run on diffrent server");
+                throw new Exception("Captcha Found please run on a diffrent server");
             }
 
             if (!preg_match('/fmt_url_map=(.*?)&/', $html, $match)) {
