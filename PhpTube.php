@@ -57,15 +57,17 @@ class PhpTube
                 '37' => array('mp4', 'High Quality (1080p)'),
             );
 
-            foreach ($formats as $format => $meta) {
+            foreach ($formats as $format => $meta)
+            {
                 if (isset($foundArray[$format])) {
                     $videos[] = array('ext' => $meta[0], 'type' => $meta[1], 'url' => $foundArray[$format]);
                 }
             }
 
             return $videos;
+            
         } catch (Exception $e) {
-            return "An error ocurred: ".$e->getMessage();
+            return "An error ocurred: " . $e->getMessage();
         }
     }
 
