@@ -9,6 +9,12 @@
 class PhpTube
 {
 
+    /**
+     * Parses the youtube URL and returns error message or array of download links
+     *
+     * @param  $watchUrl the URL of the Youtube video
+     * @return string|array the error message or the array of download links
+     */
 
     public function getDownloadLink($watchUrl)
     {
@@ -77,6 +83,13 @@ class PhpTube
         }
     }
 
+    /**
+     * A wrapper around the cURL library to fetch the content of the url
+     *
+     * @throws Exception if the curl extension is not available (or loaded)
+     * @param  $url the url of the page to fetch the content of
+     * @return string the content of the url
+     */
     private function _getHtml($url)
     {
         if (function_exists("curl_init")) {
