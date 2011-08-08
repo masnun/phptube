@@ -14,11 +14,12 @@
 
 </form>
 
-        <?php
-        if (isset($_POST['url'])) {
+<?php
+if (isset($_POST['url'])) {
     require_once 'PhpTube.php';
     $tube = new PhpTube();
     $videos = $tube->getDownloadLink($_POST['url']);
     var_dump($videos);
-    ?>
+}
+?>
 </body>
