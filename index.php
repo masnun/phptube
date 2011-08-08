@@ -8,12 +8,12 @@
 
 <body>
 <form method="post">
-    <pre>Type the full video URL and grab the download links:</pre>
+    <pre>Type the full video URL:</pre>
     <input type="text" name="url" value="" style="width: 300px">
     <input type="submit" value="Go">
 
 </form>
-
+For better inspection, we now var_dump the data <br/>
 <?php
 if (isset($_POST['url'])) {
     require_once 'PhpTube.php';
