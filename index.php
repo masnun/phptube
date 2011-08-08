@@ -14,27 +14,11 @@
 
 </form>
 
-<?php
-if (isset($_POST['url'])) {
-        require_once 'PhpTube.php';
-        $tube = new PhpTube();
-        $links = $tube->getDownloadLink($_POST['url']);
-
-        if (is_array($links)) {
-            ?>
-                    <b>Download Links</b> :
-
-                        <?php
-                                foreach ($links as $link) {
-                                    echo "<pre><a href=\"{$link['url']}\">{$link['type']}</a></pre>";
-                                }
-                        ?>
-
-
-                    <?php
-                    } else {
-                        echo "<br/><br/><pre style='color:red; font-size:14px'>{$links}</pre> " ;
-                    }
-                }
-        ?>
+        <?php
+        if (isset($_POST['url'])) {
+    require_once 'PhpTube.php';
+    $tube = new PhpTube();
+    $videos = $tube->getDownloadLink($_POST['url']);
+    var_dump($videos);
+    ?>
 </body>
