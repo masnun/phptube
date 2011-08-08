@@ -55,8 +55,6 @@ class PhpTube
                     $foundVideos[] = $data;
                 }
 
-                var_dump($foundVideos);
-
                 return $foundVideos;
 
             } else {
