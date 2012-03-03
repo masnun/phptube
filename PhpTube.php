@@ -1,4 +1,5 @@
 <?php
+
 /*
  * @package PhpTube - A PHP class to get youtube download links
  * @author Abu Ashraf Masnun <mailbox@masnun.me>
@@ -15,55 +16,39 @@ class PhpTube
      * @param  $watchUrl the URL of the Youtube video
      * @return string|array the error message or the array of download links
      */
-
     public function getDownloadLink($watchUrl)
     {
-        try {
-            //Scrape the HTML
-            $html = $this->_getHtml($watchUrl);
-
+        //utf8 encode and convert "&"
+        $html = utf8_encode($this->_getHtml($watchUrl));
+        $html = str_replace("\u0026amp;","&",$html);
+        
+        //get format url
+        preg_match_all('/url_encoded_fmt_stream_map\=(.*)/',$html,$matches);
+        $formatUrl =  urldecode($matches[1][0]);
+        
+        //split the format url into individual urls
+        $urls = preg_split('/url=/', $formatUrl);
+        
+        $videoUrls = array();
+        
+        foreach($urls as $url) 
+        {
+        
+            // do necessary processings
+            $url = urldecode($url);
+            $urlparts = explode(";",$url);
+            $url = $urlparts[0];
+            $urlparts = explode(",",$url);
+            $url = $urlparts[0];
             
-            if (strstr($html, 'verify-age-thumb')) {
-                throw new Exception("Adult Video Detected");
+            // append to container
+            if(strlen($url) > 450 && strlen($url) < 600) 
+            {
+                $videoUrls[] = $url;
             }
-
-            if (strstr($html, 'das_captcha')) {
-                throw new Exception("Captcha Found please run on a diffrent server");
-            }
-
-            if (!preg_match_all('/url_encoded_fmt_stream_map=(.*?)&/', $html, $match)) {
-                throw new Exception("Error Locating Downlod URL's");
-            }
-
-
-            // Decode format map
-            $formatUrl = urldecode($match[1][0]);
-
-
-            if (preg_match('/^(.*?)\\\\u0026/', $formatUrl, $match)) {
-                $formatUrl = $match[1];
-            }
-
-            if ($formatUrl) {
-
-                // break the parts of the url
-                $urlParts = explode(",", $formatUrl);
-                $foundVideos = array();
-
-                foreach ($urlParts as $urlMap) {
-                    parse_str($urlMap, $data);
-                    $foundVideos[] = $data;
-                }
-
-                return $foundVideos;
-
-            } else {
-                throw new Exception("The video has no download candidates");
-            }
-
-        } catch (Exception $e) {
-            return "An error ocurred: " . $e->getMessage();
         }
+        
+        return $videoUrls;
     }
 
     /**
@@ -75,15 +60,18 @@ class PhpTube
      */
     private function _getHtml($url)
     {
-        if (function_exists("curl_init")) {
+        if (function_exists("curl_init"))
+        {
 
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             return curl_exec($ch);
-        } else {
+        }
+        else
+        {
             throw new Exception("No cURL module available");
         }
-
     }
+
 }
