@@ -1,7 +1,7 @@
-POSTer
+PHP Tube
 =======
 
 :Author: Abu Ashraf Masnun
-:Email: mailbox@masnun.me
-:Website: http://www.masnun.com
+:Email: masnun@gmail.com
+:Website: http://masnun.me
 
