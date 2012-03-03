@@ -2,7 +2,9 @@
 ### The PHP Library to fetch Youtube video URIs from Watch URLs ###
 
 **Author:** Abu Ashraf Masnun
+
 **Email:** masnun@gmail.com
+
 **Web:** http://masnun.me
 
 #### What is PHPTube? ####
