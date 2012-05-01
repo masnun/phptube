@@ -20,34 +20,45 @@ class PhpTube
     {
         //utf8 encode and convert "&"
         $html = utf8_encode($this->_getHtml($watchUrl));
-        $html = str_replace("\u0026amp;","&",$html);
-        
+        $html = str_replace("\u0026amp;", "&", $html);
+
         //get format url
-        preg_match_all('/url_encoded_fmt_stream_map\=(.*)/',$html,$matches);
-        $formatUrl =  urldecode($matches[1][0]);
-        
+        preg_match_all('/url_encoded_fmt_stream_map\=(.*)/', $html, $matches);
+        $formatUrl = urldecode($matches[1][0]);
+
         //split the format url into individual urls
         $urls = preg_split('/url=/', $formatUrl);
-        
+
         $videoUrls = array();
-        
-        foreach($urls as $url) 
+
+        foreach ($urls as $url)
         {
-        
-            // do necessary processings
+
+            /*
+             *  Process the url and cut off the unnecessary data
+             */
             $url = urldecode($url);
-            $urlparts = explode(";",$url);
+            $urlparts = explode(";", $url);
             $url = $urlparts[0];
-            $urlparts = explode(",",$url);
+            $urlparts = explode(",", $url);
             $url = $urlparts[0];
-            
-            // append to container
-            if(strlen($url) > 450 && strlen($url) < 600) 
+
+            /*
+             * Process type
+             */
+
+            parse_str($url, $data);
+
+            if (isset($data['watermark']) || empty($url))
             {
-                $videoUrls[] = $url;
+                continue;
+            }
+            else
+            {
+                $videoUrls[] = array("type" => $data['type'], "url" => $url);
             }
         }
-        
+
         return $videoUrls;
     }
 
