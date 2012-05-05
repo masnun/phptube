@@ -55,7 +55,11 @@ class PhpTube
             }
             else
             {
-                $videoUrls[] = array("type" => $data['type'], "url" => $url);
+            
+                if (!empty($data['type']) && !empty($data['quality']))
+                {
+                    $videoUrls[] = array("type" => $data['type'], "quality" => $data['quality'], "url" => $url);
+                }
             }
         }
 
