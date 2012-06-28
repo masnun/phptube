@@ -1,0 +1,13 @@
+{
+    "name": "masnun/phptube",
+    "description": "phptube allows scraping youtube and getting videos url for download",
+    "authors": [
+        {
+            "name": "Abu Ashraf Masnun",
+            "email": "masnun@gmail.com"
+        }
+    ],
+    "require": {
+
+    }
+}
