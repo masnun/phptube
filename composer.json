@@ -4,10 +4,11 @@
     "authors": [
         {
             "name": "Abu Ashraf Masnun",
-            "email": "masnun@gmail.com"
+            "email": "masnun@gmail.com",
+            "homepage": "http://masnun.me",
         }
     ],
     "require": {
-
+	    "ext-curl": "*"
     }
 }
