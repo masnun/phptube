@@ -1,7 +1,6 @@
 {
     "name": "masnun/phptube",
     "description": "phptube allows scraping youtube and getting videos url for download",
-    "version": "1.0.0",
     "type": "library",
     "keywords": ["youtube","video"],
     "homepage": "https://github.com/masnun/phptube",
