@@ -10,5 +10,9 @@
     ],
     "require": {
 	    "ext-curl": "*"
+    },
+    
+    "autoload": {
+        "classmap": ["PhpTube.php"]
     }
 }
