@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-	    "ext-curl": "*"
+	    
     },
     
     "autoload": {
