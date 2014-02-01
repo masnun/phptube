@@ -66,6 +66,13 @@ class PhpTube
         return $videoUrls;
     }
     
+    /**
+     * Parses the YouTube URL's and return them back to the developer
+     * 
+     * @param  $watchUrls the URLs of the Youtube video's
+     * @return array|array the error message or the array of download links
+     */
+    
     public function getDownloadLinks(array $watchUrls = array())
     {
         // Loops throught the url and return a array which contains all of the converted links
