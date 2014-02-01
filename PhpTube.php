@@ -65,6 +65,20 @@ class PhpTube
 
         return $videoUrls;
     }
+    
+    public function getDownloadLinks(array $watchUrls = array())
+    {
+        // Loops throught the url and return a array which contains all of the converted links
+        
+        $converted = array();
+        
+        foreach ($watchUrls as $watchUrl)
+        {
+            $converted[] = $this->getDownloadLink($watchUrl); 
+        }
+        
+        return $converted;
+    }
 
     /**
      * A wrapper around the cURL library to fetch the content of the url
